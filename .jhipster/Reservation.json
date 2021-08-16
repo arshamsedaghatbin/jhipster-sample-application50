@@ -1,0 +1,71 @@
+{
+  "name": "Reservation",
+  "fields": [
+    {
+      "fieldName": "reservatorId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reservatorType",
+      "fieldType": "ReservatorType",
+      "fieldValues": "CUSTOMER,BIKER",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "referenceId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "referenceType",
+      "fieldType": "ReferenceType",
+      "fieldValues": "ORDER",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reserveType",
+      "fieldType": "ReserveType",
+      "fieldValues": "RESERVE",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ReservationStatus",
+      "fieldValues": "ACTIVE",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "actionBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "timeSlot",
+      "otherEntityRelationshipName": "reservation",
+      "relationshipName": "timeSlot"
+    }
+  ],
+  "entityTableName": "reservation",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210816132706"
+}

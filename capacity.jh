@@ -1,0 +1,84 @@
+
+entity TimeSlot {
+	 startTime Instant required,
+     endTime  Instant required,
+     capacity Integer required,
+     remaining Integer required,
+     availabilityStatus AvailAbilityStatus required,
+     centerName String required,
+     actionBy String required,
+     createdAt Instant unique required,
+     updatedAt Instant required
+}
+
+enum AvailAbilityStatus{
+	AVAILABLE
+}
+
+
+entity Reservation {
+	 reservatorId String required,
+     reservatorType  ReservatorType required,
+     referenceId String required,
+     referenceType ReferenceType required,
+     reserveType  ReserveType required,
+     status ReservationStatus required,
+      actionBy String required,
+     createdAt Instant required,
+     updatedAt Instant
+   }
+
+enum ReservatorType {
+		CUSTOMER , BIKER
+}
+
+enum ReserveType{
+	RESERVE
+}
+
+enum ReferenceType {
+		ORDER
+}
+
+enum ReservationStatus{
+		ACTIVE
+}
+enum GenerationRuleStatus{
+	ACTIVE
+}
+
+entity GenerationRule {
+       centerName String  unique required,
+     validFrom  Instant required,
+     validTo String required,
+     daysOfWeek Integer required,
+     defaultCapacity  Integer required,
+     startSlotsTime Instant required,
+      endSlotsTime Instant required,
+     slotDuration Integer required,
+     maxAvailableDays Integer required,
+     status GenerationRuleStatus required,
+     actionBy String required,
+     createdAt Instant required,
+     updatedAt Instant
+   }
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	TimeSlot{reservation} to Reservation{timeSlot},
+    GenerationRule{timeSlot} to TimeSlot{generationRule}
+   
+}
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

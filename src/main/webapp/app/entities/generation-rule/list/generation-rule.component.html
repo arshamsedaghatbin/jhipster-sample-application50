@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="GenerationRuleHeading">
+    <span jhiTranslate="jhipsterSampleApplication50App.generationRule.home.title">Generation Rules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplication50App.generationRule.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-generation-rule"
+        [routerLink]="['/generation-rule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplication50App.generationRule.home.createLabel"> Create a new Generation Rule </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="generationRules?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplication50App.generationRule.home.notFound">No generationRules found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="generationRules && generationRules.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="centerName">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.centerName">Center Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="validFrom">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.validFrom">Valid From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="validTo">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.validTo">Valid To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="daysOfWeek">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.daysOfWeek">Days Of Week</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="defaultCapacity">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.defaultCapacity">Default Capacity</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="startSlotsTime">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.startSlotsTime">Start Slots Time</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endSlotsTime">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.endSlotsTime">End Slots Time</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="slotDuration">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.slotDuration">Slot Duration</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="maxAvailableDays">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.maxAvailableDays">Max Available Days</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="actionBy">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.actionBy">Action By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="jhipsterSampleApplication50App.generationRule.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let generationRule of generationRules; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/generation-rule', generationRule.id, 'view']">{{ generationRule.id }}</a>
+          </td>
+          <td>{{ generationRule.centerName }}</td>
+          <td>{{ generationRule.validFrom | formatMediumDatetime }}</td>
+          <td>{{ generationRule.validTo }}</td>
+          <td>{{ generationRule.daysOfWeek }}</td>
+          <td>{{ generationRule.defaultCapacity }}</td>
+          <td>{{ generationRule.startSlotsTime | formatMediumDatetime }}</td>
+          <td>{{ generationRule.endSlotsTime | formatMediumDatetime }}</td>
+          <td>{{ generationRule.slotDuration }}</td>
+          <td>{{ generationRule.maxAvailableDays }}</td>
+          <td jhiTranslate="{{ 'jhipsterSampleApplication50App.GenerationRuleStatus.' + generationRule.status }}">
+            {{ generationRule.status }}
+          </td>
+          <td>{{ generationRule.actionBy }}</td>
+          <td>{{ generationRule.createdAt | formatMediumDatetime }}</td>
+          <td>{{ generationRule.updatedAt | formatMediumDatetime }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/generation-rule', generationRule.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/generation-rule', generationRule.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(generationRule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="generationRules && generationRules.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

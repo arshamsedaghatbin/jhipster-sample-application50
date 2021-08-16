@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="reservation">
+      <h2 data-cy="reservationDetailsHeading">
+        <span jhiTranslate="jhipsterSampleApplication50App.reservation.detail.title">Reservation</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ reservation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.reservatorId">Reservator Id</span></dt>
+        <dd>
+          <span>{{ reservation.reservatorId }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.reservatorType">Reservator Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.ReservatorType.' + reservation.reservatorType }}">{{
+            reservation.reservatorType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.referenceId">Reference Id</span></dt>
+        <dd>
+          <span>{{ reservation.referenceId }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.referenceType">Reference Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.ReferenceType.' + reservation.referenceType }}">{{
+            reservation.referenceType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.reserveType">Reserve Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.ReserveType.' + reservation.reserveType }}">{{
+            reservation.reserveType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.ReservationStatus.' + reservation.status }}">{{
+            reservation.status
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.actionBy">Action By</span></dt>
+        <dd>
+          <span>{{ reservation.actionBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ reservation.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ reservation.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.reservation.timeSlot">Time Slot</span></dt>
+        <dd>
+          <div *ngIf="reservation.timeSlot">
+            <a [routerLink]="['/time-slot', reservation.timeSlot?.id, 'view']">{{ reservation.timeSlot?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/reservation', reservation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

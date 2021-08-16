@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="TimeSlotHeading">
+    <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.home.title">Time Slots</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-time-slot"
+        [routerLink]="['/time-slot/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.home.createLabel"> Create a new Time Slot </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="timeSlots?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.home.notFound">No timeSlots found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="timeSlots && timeSlots.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="startTime">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.startTime">Start Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endTime">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.endTime">End Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="capacity">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.capacity">Capacity</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="remaining">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.remaining">Remaining</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="availabilityStatus">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.availabilityStatus">Availability Status</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="centerName">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.centerName">Center Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="actionBy">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.actionBy">Action By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="generationRule.id">
+            <span jhiTranslate="jhipsterSampleApplication50App.timeSlot.generationRule">Generation Rule</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let timeSlot of timeSlots; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/time-slot', timeSlot.id, 'view']">{{ timeSlot.id }}</a>
+          </td>
+          <td>{{ timeSlot.startTime | formatMediumDatetime }}</td>
+          <td>{{ timeSlot.endTime | formatMediumDatetime }}</td>
+          <td>{{ timeSlot.capacity }}</td>
+          <td>{{ timeSlot.remaining }}</td>
+          <td jhiTranslate="{{ 'jhipsterSampleApplication50App.AvailAbilityStatus.' + timeSlot.availabilityStatus }}">
+            {{ timeSlot.availabilityStatus }}
+          </td>
+          <td>{{ timeSlot.centerName }}</td>
+          <td>{{ timeSlot.actionBy }}</td>
+          <td>{{ timeSlot.createdAt | formatMediumDatetime }}</td>
+          <td>{{ timeSlot.updatedAt | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="timeSlot.generationRule">
+              <a [routerLink]="['/generation-rule', timeSlot.generationRule?.id, 'view']">{{ timeSlot.generationRule?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/time-slot', timeSlot.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/time-slot', timeSlot.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(timeSlot)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="timeSlots && timeSlots.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

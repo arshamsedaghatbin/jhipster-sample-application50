@@ -1,0 +1,9 @@
+{
+  "jhipsterSampleApplication50App": {
+    "ReservatorType": {
+      "null": "",
+      "CUSTOMER": "CUSTOMER",
+      "BIKER": "BIKER"
+    }
+  }
+}

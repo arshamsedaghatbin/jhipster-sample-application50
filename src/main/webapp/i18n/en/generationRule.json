@@ -1,0 +1,37 @@
+{
+  "jhipsterSampleApplication50App": {
+    "generationRule": {
+      "home": {
+        "title": "Generation Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Generation Rule",
+        "createOrEditLabel": "Create or edit a Generation Rule",
+        "notFound": "No Generation Rules found"
+      },
+      "created": "A new Generation Rule is created with identifier {{ param }}",
+      "updated": "A Generation Rule is updated with identifier {{ param }}",
+      "deleted": "A Generation Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Generation Rule {{ id }}?"
+      },
+      "detail": {
+        "title": "Generation Rule"
+      },
+      "id": "ID",
+      "centerName": "Center Name",
+      "validFrom": "Valid From",
+      "validTo": "Valid To",
+      "daysOfWeek": "Days Of Week",
+      "defaultCapacity": "Default Capacity",
+      "startSlotsTime": "Start Slots Time",
+      "endSlotsTime": "End Slots Time",
+      "slotDuration": "Slot Duration",
+      "maxAvailableDays": "Max Available Days",
+      "status": "Status",
+      "actionBy": "Action By",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "timeSlot": "Time Slot"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="timeSlot">
+      <h2 data-cy="timeSlotDetailsHeading"><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.detail.title">Time Slot</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ timeSlot.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ timeSlot.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ timeSlot.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.capacity">Capacity</span></dt>
+        <dd>
+          <span>{{ timeSlot.capacity }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.remaining">Remaining</span></dt>
+        <dd>
+          <span>{{ timeSlot.remaining }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.availabilityStatus">Availability Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.AvailAbilityStatus.' + timeSlot.availabilityStatus }}">{{
+            timeSlot.availabilityStatus
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.centerName">Center Name</span></dt>
+        <dd>
+          <span>{{ timeSlot.centerName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.actionBy">Action By</span></dt>
+        <dd>
+          <span>{{ timeSlot.actionBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ timeSlot.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ timeSlot.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.timeSlot.generationRule">Generation Rule</span></dt>
+        <dd>
+          <div *ngIf="timeSlot.generationRule">
+            <a [routerLink]="['/generation-rule', timeSlot.generationRule?.id, 'view']">{{ timeSlot.generationRule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/time-slot', timeSlot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
