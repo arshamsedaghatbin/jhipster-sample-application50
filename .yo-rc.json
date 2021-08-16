@@ -43,7 +43,9 @@
     "devServerPort": 4200,
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["TimeSlot", "Reservation", "GenerationRule"],
+    "lastLiquibaseTimestamp": 1629120427000
   },
   "git-provider": "GitHub",
   "git-company": "arshamsedaghatbin",

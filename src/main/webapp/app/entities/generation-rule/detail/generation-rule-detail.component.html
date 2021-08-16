@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="generationRule">
+      <h2 data-cy="generationRuleDetailsHeading">
+        <span jhiTranslate="jhipsterSampleApplication50App.generationRule.detail.title">Generation Rule</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ generationRule.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.centerName">Center Name</span></dt>
+        <dd>
+          <span>{{ generationRule.centerName }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.validFrom">Valid From</span></dt>
+        <dd>
+          <span>{{ generationRule.validFrom | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.validTo">Valid To</span></dt>
+        <dd>
+          <span>{{ generationRule.validTo }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.daysOfWeek">Days Of Week</span></dt>
+        <dd>
+          <span>{{ generationRule.daysOfWeek }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.defaultCapacity">Default Capacity</span></dt>
+        <dd>
+          <span>{{ generationRule.defaultCapacity }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.startSlotsTime">Start Slots Time</span></dt>
+        <dd>
+          <span>{{ generationRule.startSlotsTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.endSlotsTime">End Slots Time</span></dt>
+        <dd>
+          <span>{{ generationRule.endSlotsTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.slotDuration">Slot Duration</span></dt>
+        <dd>
+          <span>{{ generationRule.slotDuration }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.maxAvailableDays">Max Available Days</span></dt>
+        <dd>
+          <span>{{ generationRule.maxAvailableDays }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipsterSampleApplication50App.GenerationRuleStatus.' + generationRule.status }}">{{
+            generationRule.status
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.actionBy">Action By</span></dt>
+        <dd>
+          <span>{{ generationRule.actionBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ generationRule.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplication50App.generationRule.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ generationRule.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/generation-rule', generationRule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

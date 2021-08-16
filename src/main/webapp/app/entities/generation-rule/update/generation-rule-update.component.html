@@ -1,0 +1,410 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-generation-rule-heading"
+        data-cy="GenerationRuleCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplication50App.generationRule.home.createOrEditLabel"
+      >
+        Create or edit a Generation Rule
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.centerName" for="field_centerName"
+            >Center Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="centerName"
+            id="field_centerName"
+            data-cy="centerName"
+            formControlName="centerName"
+          />
+          <div *ngIf="editForm.get('centerName')!.invalid && (editForm.get('centerName')!.dirty || editForm.get('centerName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('centerName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.validFrom" for="field_validFrom"
+            >Valid From</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_validFrom"
+              data-cy="validFrom"
+              type="datetime-local"
+              class="form-control"
+              name="validFrom"
+              formControlName="validFrom"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('validFrom')!.invalid && (editForm.get('validFrom')!.dirty || editForm.get('validFrom')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('validFrom')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('validFrom')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.validTo" for="field_validTo"
+            >Valid To</label
+          >
+          <input type="text" class="form-control" name="validTo" id="field_validTo" data-cy="validTo" formControlName="validTo" />
+          <div *ngIf="editForm.get('validTo')!.invalid && (editForm.get('validTo')!.dirty || editForm.get('validTo')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('validTo')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.daysOfWeek" for="field_daysOfWeek"
+            >Days Of Week</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="daysOfWeek"
+            id="field_daysOfWeek"
+            data-cy="daysOfWeek"
+            formControlName="daysOfWeek"
+          />
+          <div *ngIf="editForm.get('daysOfWeek')!.invalid && (editForm.get('daysOfWeek')!.dirty || editForm.get('daysOfWeek')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('daysOfWeek')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('daysOfWeek')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplication50App.generationRule.defaultCapacity"
+            for="field_defaultCapacity"
+            >Default Capacity</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="defaultCapacity"
+            id="field_defaultCapacity"
+            data-cy="defaultCapacity"
+            formControlName="defaultCapacity"
+          />
+          <div
+            *ngIf="
+              editForm.get('defaultCapacity')!.invalid &&
+              (editForm.get('defaultCapacity')!.dirty || editForm.get('defaultCapacity')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('defaultCapacity')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('defaultCapacity')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplication50App.generationRule.startSlotsTime"
+            for="field_startSlotsTime"
+            >Start Slots Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_startSlotsTime"
+              data-cy="startSlotsTime"
+              type="datetime-local"
+              class="form-control"
+              name="startSlotsTime"
+              formControlName="startSlotsTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('startSlotsTime')!.invalid && (editForm.get('startSlotsTime')!.dirty || editForm.get('startSlotsTime')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('startSlotsTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('startSlotsTime')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplication50App.generationRule.endSlotsTime"
+            for="field_endSlotsTime"
+            >End Slots Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_endSlotsTime"
+              data-cy="endSlotsTime"
+              type="datetime-local"
+              class="form-control"
+              name="endSlotsTime"
+              formControlName="endSlotsTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="editForm.get('endSlotsTime')!.invalid && (editForm.get('endSlotsTime')!.dirty || editForm.get('endSlotsTime')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('endSlotsTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('endSlotsTime')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplication50App.generationRule.slotDuration"
+            for="field_slotDuration"
+            >Slot Duration</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="slotDuration"
+            id="field_slotDuration"
+            data-cy="slotDuration"
+            formControlName="slotDuration"
+          />
+          <div
+            *ngIf="editForm.get('slotDuration')!.invalid && (editForm.get('slotDuration')!.dirty || editForm.get('slotDuration')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('slotDuration')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('slotDuration')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplication50App.generationRule.maxAvailableDays"
+            for="field_maxAvailableDays"
+            >Max Available Days</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="maxAvailableDays"
+            id="field_maxAvailableDays"
+            data-cy="maxAvailableDays"
+            formControlName="maxAvailableDays"
+          />
+          <div
+            *ngIf="
+              editForm.get('maxAvailableDays')!.invalid &&
+              (editForm.get('maxAvailableDays')!.dirty || editForm.get('maxAvailableDays')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('maxAvailableDays')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('maxAvailableDays')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.status" for="field_status"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'jhipsterSampleApplication50App.GenerationRuleStatus.null' | translate }}</option>
+            <option value="ACTIVE">{{ 'jhipsterSampleApplication50App.GenerationRuleStatus.ACTIVE' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.actionBy" for="field_actionBy"
+            >Action By</label
+          >
+          <input type="text" class="form-control" name="actionBy" id="field_actionBy" data-cy="actionBy" formControlName="actionBy" />
+          <div *ngIf="editForm.get('actionBy')!.invalid && (editForm.get('actionBy')!.dirty || editForm.get('actionBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('actionBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.createdAt" for="field_createdAt"
+            >Created At</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdAt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdAt')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplication50App.generationRule.updatedAt" for="field_updatedAt"
+            >Updated At</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="datetime-local"
+              class="form-control"
+              name="updatedAt"
+              formControlName="updatedAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "jhipsterSampleApplication50App": {
+    "timeSlot": {
+      "home": {
+        "title": "Time Slots",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Time Slot",
+        "createOrEditLabel": "Create or edit a Time Slot",
+        "notFound": "No Time Slots found"
+      },
+      "created": "A new Time Slot is created with identifier {{ param }}",
+      "updated": "A Time Slot is updated with identifier {{ param }}",
+      "deleted": "A Time Slot is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Time Slot {{ id }}?"
+      },
+      "detail": {
+        "title": "Time Slot"
+      },
+      "id": "ID",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "capacity": "Capacity",
+      "remaining": "Remaining",
+      "availabilityStatus": "Availability Status",
+      "centerName": "Center Name",
+      "actionBy": "Action By",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "reservation": "Reservation",
+      "generationRule": "Generation Rule"
+    }
+  }
+}
